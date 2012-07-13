@@ -1656,53 +1656,54 @@ class Mailer implements IMailer {
 	 * Wyswietla zawartosc pewnych pol obiektu
 	 * 
 	 * @access public
-	 * @return void
+	 * @return string
 	 *
 	 */	
 	public function __toString() {
-		echo '<pre>' . "\n <br />";
-		echo '---------------------------------------------------------- ' . "\n <br />";		
-		echo 'To: ' . $this->makeAddressStringFromArray($this->_mailTo) . "\n <br />";
-		echo 'Cc: ' . $this->makeAddressStringFromArray($this->_mailCc) . "\n <br />";
-		echo 'Bcc: ' . $this->makeAddressStringFromArray($this->_mailBcc) . "\n <br />";
-		echo 'Reply-To: ' . $this->_mailReplyTo . "\n <br />";
-		echo 'Reply-To Name: ' . $this->_mailReplyToName . "\n <br />";
-		echo 'From: ' . $this->_mailFrom . "\n <br />";
-		echo 'From Name: ' . $this->_mailFromName . "\n <br />";
-		echo 'Subject: ' . $this->_mailSubject . "\n <br />";
-		echo 'Body: ' . $this->_mailBody . "\n <br />";
-		echo 'Body encoded QT: ' . $this->quotedPrintable($this->_mailBody) . "\n <br />";
-		echo 'Body wraped: ' . $this->wordWrap($this->_mailBody,75) . "\n <br />";		
+		$str = '';
+		$str .= '<pre>' . "\n <br />";
+		$str .= '---------------------------------------------------------- ' . "\n <br />";		
+		$str .= 'To: ' . $this->makeAddressStringFromArray($this->_mailTo) . "\n <br />";
+		$str .= 'Cc: ' . $this->makeAddressStringFromArray($this->_mailCc) . "\n <br />";
+		$str .= 'Bcc: ' . $this->makeAddressStringFromArray($this->_mailBcc) . "\n <br />";
+		$str .= 'Reply-To: ' . $this->_mailReplyTo . "\n <br />";
+		$str .= 'Reply-To Name: ' . $this->_mailReplyToName . "\n <br />";
+		$str .= 'From: ' . $this->_mailFrom . "\n <br />";
+		$str .= 'From Name: ' . $this->_mailFromName . "\n <br />";
+		$str .= 'Subject: ' . $this->_mailSubject . "\n <br />";
+		$str .= 'Body: ' . $this->_mailBody . "\n <br />";
+		$str .= 'Body encoded QT: ' . $this->quotedPrintable($this->_mailBody) . "\n <br />";
+		$str .= 'Body wraped: ' . $this->wordWrap($this->_mailBody,75) . "\n <br />";		
 		for($i=0,$c=count($this->_mailFiles); $i<$c; $i++) {
-			echo 'File ' . $i . ' Name: ' . $this->_mailFiles[$i]['fileName'] . ' Type: ' . $this->_mailFiles[$i]['fileType'] .  ' Disposition: ' . $this->_mailFiles[$i]['fileDisposition'] . "\n <br />";
+			$str .= 'File ' . $i . ' Name: ' . $this->_mailFiles[$i]['fileName'] . ' Type: ' . $this->_mailFiles[$i]['fileType'] .  ' Disposition: ' . $this->_mailFiles[$i]['fileDisposition'] . "\n <br />";
 		}
-		echo '---------------------------------------------------------- ' . "\n <br />";
-		echo 'Text Type: ' . $this->_mailTextType . "\n <br />";
-		echo 'Charset: ' . $this->_mailCharset . "\n <br />";
-		echo 'Priority: ' . $this->_mailPriority . "\n <br />";
-		echo 'MSPriority: ' . $this->_mailMsMailPriority . "\n <br />";
-		echo 'Text Plain Encoding: ' . $this->_mailTextPlainContentTransferEncoding . "\n <br />";
-		echo 'Text HTML Encoding: ' . $this->_mailTextHtmlContentTransferEncoding . "\n <br />";
-		echo 'File Encoding: ' . $this->_mailFileContentTransferEncoding . "\n <br />";		
-		echo 'Alternative Text: ' . $this->_mailAlternativeText . "\n <br />";
-		echo 'Protocol: ' . $this->_mailProtocol . "\n <br />";
-		$endl = ($this->_endString == "\r\n") ? '\r\n' : '\n';
-		echo 'Endl: ' . $endl . "\n <br />";
-		$wp = ($this->_wordWrap === true) ? 1 : 0;
-		echo 'Word Wrap: ' . $wp . "\n <br />";
-		echo 'Mailer: ' . $this->_mailMailer . "\n <br />";
-		echo 'Mime Version: ' . $this->_mailMimeVersion . "\n <br />";
-		echo 'Mime Info: ' . $this->_mailMimeInfo . "\n <br />";
-		echo 'Mime Multipart: ' . $this->_mailMimeTypeMultipart . "\n <br />";
-		$ml = ($this->_mailMultipart === true) ? 1 : 0;		
-		echo 'Send Multipart: ' . $ml . "\n <br />";
-		echo '---------------------------------------------------------- ' . "\n <br />";
-		echo 'Header String: ' . $this->_mailPreparedHeaders . "\n <br />";
-		echo '---------------------------------------------------------- ' . "\n <br />";		
-		echo 'Body String: ' . $this->_mailPreparedBody . "\n <br />";
-		echo '---------------------------------------------------------- ' . "\n <br />";		
-		echo '</pre>' . "\n <br />";
-		return '';
+		$str .= '---------------------------------------------------------- ' . "\n <br />";
+		$str .= 'Text Type: ' . $this->_mailTextType . "\n <br />";
+		$str .= 'Charset: ' . $this->_mailCharset . "\n <br />";
+		$str .= 'Priority: ' . $this->_mailPriority . "\n <br />";
+		$str .= 'MSPriority: ' . $this->_mailMsMailPriority . "\n <br />";
+		$str .= 'Text Plain Encoding: ' . $this->_mailTextPlainContentTransferEncoding . "\n <br />";
+		$str .= 'Text HTML Encoding: ' . $this->_mailTextHtmlContentTransferEncoding . "\n <br />";
+		$str .= 'File Encoding: ' . $this->_mailFileContentTransferEncoding . "\n <br />";		
+		$str .= 'Alternative Text: ' . $this->_mailAlternativeText . "\n <br />";
+		$str .= 'Protocol: ' . $this->_mailProtocol . "\n <br />";
+			$endl = ($this->_endString == "\r\n") ? '\r\n' : '\n';
+		$str .= 'Endl: ' . $endl . "\n <br />";
+			$wp = ($this->_wordWrap === true) ? 1 : 0;
+		$str .= 'Word Wrap: ' . $wp . "\n <br />";
+		$str .= 'Mailer: ' . $this->_mailMailer . "\n <br />";
+		$str .= 'Mime Version: ' . $this->_mailMimeVersion . "\n <br />";
+		$str .= 'Mime Info: ' . $this->_mailMimeInfo . "\n <br />";
+		$str .= 'Mime Multipart: ' . $this->_mailMimeTypeMultipart . "\n <br />";
+			$ml = ($this->_mailMultipart === true) ? 1 : 0;		
+		$str .= 'Send Multipart: ' . $ml . "\n <br />";
+		$str .= '---------------------------------------------------------- ' . "\n <br />";
+		$str .= 'Header String: ' . $this->_mailPreparedHeaders . "\n <br />";
+		$str .= '---------------------------------------------------------- ' . "\n <br />";		
+		$str .= 'Body String: ' . $this->_mailPreparedBody . "\n <br />";
+		$str .= '---------------------------------------------------------- ' . "\n <br />";		
+		$str .= '</pre>' . "\n <br />";
+		return $str;
 	}
 	
 	/**
