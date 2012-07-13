@@ -1,0 +1,59 @@
+<?php
+
+/*
+class HtmlElementFieldset extends HtmlElementAbstract {
+
+	protected $_validator = null;
+	protected $_legend = null;
+	
+	protected $_elements = array();
+	
+	protected $_tag = 'fieldset';
+	
+	public function __construct(IFactory $htmlElementFactory, IValidator $validator) {
+		$this->_htmlElementFactory = $htmlElementFactory;
+	}
+	
+	public function addElement($formElement) {
+		if(is_array($formElement)) {
+			foreach($formElement AS $element) {
+				$this->addElement($element);
+			}
+		}
+		else {
+			if($formElement instanceof FormElementAbstract) {
+				$name = $formElement->getName();
+				$this->_elements[$name] = $formElement;
+			}
+			else {
+				$this->_elements[] = $formElement;
+			}
+		}
+	}
+	
+	public function fetchHtml() {
+		$htmlString = '';
+		$htmlString .= "<" . $this->_tag . " " . $this->buildAttributesString() . ">\n";
+		foreach($this->_elements AS $element) {
+			$htmlString .= $element->fetchHtml();
+		}
+		$htmlString .= "</" . $this->_tag . ">\n";
+		return $htmlString;
+	}	
+	
+	public function setValues($values=array()) {
+		if(!is_array($values)) {
+			$values = array($values);
+		}
+		foreach($values AS $name => $value) {
+			if(isset($this->_elements[$name])) {
+				$this->_elements[$name]->setValue($value);
+			}
+		}
+	}	
+	
+}
+*/
+
+
+?>
